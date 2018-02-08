@@ -47,7 +47,7 @@
 		<header>
 			<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 				<div class="navbar-brand mr-auto">Minify Apex!</div>
-				<button class="btn btn-outline-warning my-2">Report Issue</button>
+				<button class="btn btn-outline-warning my-2" onclick="reportIssue()">Report Issue</button>
 			</nav>
 		</header>
 		<main role="main" class="container">
@@ -61,23 +61,39 @@
 						<textarea name="pretty" id="pretty" class="form-control" cols="30" rows="20" placeholder="Your many lines of code..."></textarea>
 					</div>
 					<div class="col-xs column-of-buttons">
-						<button type="button" class="btn btn-primary">Minify →</button>
-						<button type="button" class="btn btn-primary">← Prettify</button>
+						<button type="button" class="btn btn-primary" onclick="minify()">Minify →</button>
+						<button type="button" class="btn btn-primary" onclick="prettify()">← Prettify</button>
 					</div>
 					<div class="col-md">
-						<label for="minify">Minified Apex</label>
-						<textarea name="minify" id="minify" class="form-control" cols="30" rows="20" placeholder="Your one line of code..."></textarea>
+						<label for="minified">Minified Apex</label>
+						<textarea name="minified" id="minified" class="form-control" cols="30" rows="20" placeholder="Your one line of code..."></textarea>
 					</div>
 				</div>
 			</div>
 		</main>
 		<footer class="footer">
 			<div class="container">
-				<p class="text-muted">© 2018 Dodge Labs • Check out DodgeLabs.com for developing apps without needing to minify your test coverage.</p>
+				<p class="text-muted text-center">© 2018 Dodge Labs • Check out <a href="https://www.dodgelabs.com">DodgeLabs.com</a> for developing apps without needing to minify your test coverage.</p>
 			</div>
 		</footer>
 		<!-- JavaScript Functions -->
-
+		<script type="text/javascript">
+		function minify() {
+			let prettyCode = document.getElementById('pretty').value;
+			let minifiedCode = prettyCode.replace(/[\n\r]/g, '/* ¯\\_(ツ)_/¯ */');
+			minifiedCode = '// Minified by minifyapex.github.io. Check us out on the world wide web. ' + minifiedCode;
+			document.getElementById('minified').value = minifiedCode;
+		}
+		function prettify() {
+			let minifiedCode = document.getElementById('minified').value;
+			let prettyCode = minifiedCode.split('/* ¯\\_(ツ)_/¯ */').join('\n');
+			prettyCode = '// Prettified by minifyapex.github.io. Check us out on the world wide web. \n' + prettyCode;
+			document.getElementById('pretty').value = prettyCode;
+		}
+		function reportIssue() {
+			window.open('https://github.com/rogeramitchell/minifyapex.github.io/issues');
+		}
+		</script>
 		<!-- Bootstrap -->
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
