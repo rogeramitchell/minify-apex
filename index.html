@@ -92,12 +92,21 @@
 			let minifiedCode = prettyCode.replace(/[\n\r]/g, '/* ¯\\_(ツ)_/¯ */');
 			minifiedCode = '// Minified by minifyapex.github.io. Check us out on the world wide web. ' + minifiedCode;
 			document.getElementById('minified').value = minifiedCode;
+			sendEventToGA('Minify');
 		}
 		function prettify() {
 			let minifiedCode = document.getElementById('minified').value;
 			let prettyCode = minifiedCode.split('/* ¯\\_(ツ)_/¯ */').join('\n');
 			prettyCode = '// Prettified by minifyapex.github.io. Check us out on the world wide web. \n' + prettyCode;
 			document.getElementById('pretty').value = prettyCode;
+			sendEventToGA('Prettify');
+		}
+		function sendEventToGA(event) {
+			gtag('event', event, {
+				'event_category': 'Minify/Prettify',
+				'event_label': event,
+				'value': Math.round(new Date() / 1000)
+			});
 		}
 		function reportIssue() {
 			window.open('https://github.com/rogeramitchell/minify-apex/issues');
