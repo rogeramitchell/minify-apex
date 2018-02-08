@@ -90,14 +90,14 @@
 		function minify() {
 			let prettyCode = document.getElementById('pretty').value;
 			let minifiedCode = prettyCode.replace(/[\n\r]/g, '/* ¯\\_(ツ)_/¯ */');
-			minifiedCode = '// Minified by minifyapex.github.io. Check us out on the world wide web. ' + minifiedCode;
+			minifiedCode = '/* Minified by minifyapex.github.io. Check us out on the world wide web. */' + minifiedCode;
 			document.getElementById('minified').value = minifiedCode;
 			sendEventToGA('Minify');
 		}
 		function prettify() {
 			let minifiedCode = document.getElementById('minified').value;
 			let prettyCode = minifiedCode.split('/* ¯\\_(ツ)_/¯ */').join('\n');
-			prettyCode = '// Prettified by minifyapex.github.io. Check us out on the world wide web. \n' + prettyCode;
+			prettyCode = '/* Prettified by minifyapex.github.io. Check us out on the world wide web.*/ \n' + prettyCode;
 			document.getElementById('pretty').value = prettyCode;
 			sendEventToGA('Prettify');
 		}
