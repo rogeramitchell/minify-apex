@@ -102,11 +102,7 @@
 			sendEventToGA('Prettify');
 		}
 		function sendEventToGA(event) {
-			gtag('event', event, {
-				'event_category': 'Minify/Prettify',
-				'event_label': event,
-				'value': Math.round(new Date() / 1000)
-			});
+			gtag('event', event);
 		}
 		function reportIssue() {
 			window.open('https://github.com/rogeramitchell/minify-apex/issues');
