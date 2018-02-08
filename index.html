@@ -19,6 +19,16 @@
 			main.container {
 				padding: 60px 15px 0;
 			}
+			div.column-of-buttons {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+			div.column-of-buttons > button {
+				width: 100%;
+				margin: 0.5rem 0;
+			}
 			footer.footer {
 				position: absolute;
 				bottom: 0;
@@ -27,7 +37,6 @@
 				line-height: 60px;
 				background-color: #f5f5f5;
 			}
-			
 			div.footer > div.container {
 				padding-right: 15px;
 				padding-left: 15px;
@@ -42,11 +51,24 @@
 			</nav>
 		</header>
 		<main role="main" class="container">
-			<h1 class="mt-5">Let's make Apex test coverage easier.</h1>
-			<p>Front end developers can minify their code into a single line. Apex developers need to write test coverage on a per-line basis.</p>
-			<p class="lead">So why not write coverage for just 1 line of code?</p>
+			<h1 class="mt-5 text-center">Let's make Apex test coverage easier.</h1>
+			<p class="text-center">Front end developers can minify their code into a single line. <br/> Apex developers need to write test coverage on a per-line basis.</p>
+			<p class="lead text-center">So why not write coverage for just 1 line of code?</p>
 			<div class="action-container">
-				
+				<div class="row">
+					<div class="col-md">
+						<label for="pretty">Pretty Apex</label>
+						<textarea name="pretty" id="pretty" class="form-control" cols="30" rows="20" placeholder="Your many lines of code..."></textarea>
+					</div>
+					<div class="col-xs column-of-buttons">
+						<button type="button" class="btn btn-primary">Minify →</button>
+						<button type="button" class="btn btn-primary">← Prettify</button>
+					</div>
+					<div class="col-md">
+						<label for="minify">Minified Apex</label>
+						<textarea name="minify" id="minify" class="form-control" cols="30" rows="20" placeholder="Your one line of code..."></textarea>
+					</div>
+				</div>
 			</div>
 		</main>
 		<footer class="footer">
