@@ -28,6 +28,9 @@
 			main.container {
 				padding: 60px 15px 0;
 			}
+			main.container > p.text-center.disclaimer {
+				display: none;
+			}
 			div.column-of-buttons {
 				display: flex;
 				flex-direction: column;
@@ -63,6 +66,12 @@
 			<h1 class="mt-5 text-center">Let's make Apex test coverage easier.</h1>
 			<p class="text-center">Front end developers can minify their code into a single line. <br/> Apex developers need to write test coverage on a per-line basis.</p>
 			<p class="lead text-center">So why not write coverage for just 1 line of code?</p>
+			<p class="text-center disclaimer">
+				Ok, so you've clicked <strong>Minify</strong>, which means we need to have a serious conversation. Minifying Apex isn't a great idea. If you intend to use this in production, it's quite likely that you will end up with a headache when you try to change your code (if you forget there's a <strong>Prettify</strong> button on this site).
+			</p>
+			<p class="text-center disclaimer">
+				There's a better way to approach Apex test coverage. You can <em>write your tests first</em>, which is truly Test Driven Development (TDD, <a href="https://developer.salesforce.com/page/Test_Driven_Development_with_Force.com?elq_mid=6689&amp;elq_cid=3660728" onclick="sendEventToGA('Referral: TDD')">learn more here</a>), or write your tests in a meaningful way. If you've never written tests before, check out <a href="https://trailhead.salesforce.com/en/modules/apex_testing" onclick="sendEventToGA('Referral: Trailhead')">Trailhead</a> to get up to speed.
+			</p>
 			<div class="action-container">
 				<div class="row">
 					<div class="col-md">
@@ -82,31 +91,37 @@
 		</main>
 		<footer class="footer">
 			<div class="container">
-				<p class="text-muted text-center">© 2018 Dodge Labs • Check out <a href="https://www.dodgelabs.com">DodgeLabs.com</a> for developing apps without needing to minify your test coverage.</p>
+				<p class="text-muted text-center">© 2018 Dodge Labs • Check out <a href="https://www.dodgelabs.com" onclick="sendEventToGA('Referral: Dodge Labs')">DodgeLabs.com</a> for developing apps without needing to minify your test coverage.</p>
 			</div>
 		</footer>
 		<!-- JavaScript Functions -->
 		<script type="text/javascript">
-		function minify() {
-			let prettyCode = document.getElementById('pretty').value;
-			let minifiedCode = prettyCode.replace(/[\n\r]/g, '/* ¯\\_(ツ)_/¯ */');
-			minifiedCode = '/* Minified by Minify Apex. Check us out on the world wide web. */' + minifiedCode;
-			document.getElementById('minified').value = minifiedCode;
-			sendEventToGA('Minify');
-		}
-		function prettify() {
-			let minifiedCode = document.getElementById('minified').value;
-			let prettyCode = minifiedCode.split('/* ¯\\_(ツ)_/¯ */').join('\n');
-			prettyCode = '/* Prettified by Minify Apex. Check us out on the world wide web.*/ \n' + prettyCode;
-			document.getElementById('pretty').value = prettyCode;
-			sendEventToGA('Prettify');
-		}
-		function sendEventToGA(event) {
-			gtag('event', event);
-		}
-		function reportIssue() {
-			window.open('https://github.com/rogeramitchell/minify-apex/issues');
-		}
+			function minify() {
+				let prettyCode = document.getElementById('pretty').value;
+				let minifiedCode = prettyCode.replace(/[\n\r]/g, '/* ¯\\_(ツ)_/¯ */');
+				minifiedCode = '/* Minified by Minify Apex. Check us out on the world wide web. */' + minifiedCode;
+				document.getElementById('minified').value = minifiedCode;
+				sendEventToGA('Minify');
+				showDisclaimer();
+			}
+			function prettify() {
+				let minifiedCode = document.getElementById('minified').value;
+				let prettyCode = minifiedCode.split('/* ¯\\_(ツ)_/¯ */').join('\n');
+				prettyCode = '/* Prettified by Minify Apex. Check us out on the world wide web.*/ \n' + prettyCode;
+				document.getElementById('pretty').value = prettyCode;
+				sendEventToGA('Prettify');
+			}
+			function showDisclaimer() {
+				let disclaimers = document.querySelectorAll('p.text-center.disclaimer');
+				disclaimers.forEach(element => element.classList.remove('disclaimer'));
+			}
+			function sendEventToGA(event) {
+				gtag('event', event);
+			}
+			function reportIssue() {
+				sendEventToGA('Referral: Report Issue');
+				window.open('https://github.com/rogeramitchell/minify-apex/issues');
+			}
 		</script>
 		<!-- Bootstrap -->
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
