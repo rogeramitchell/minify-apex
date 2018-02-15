@@ -25,6 +25,15 @@
 			body {
 				margin-bottom: 60px;
 			}
+			a.link:not([href]) {
+				color: #007bff;
+				text-decoration: none;
+				background-color: transparent;
+			}
+			a.link:hover:not([href]) {
+				color: #0056b3;
+				text-decoration: underline;
+			}
 			main.container {
 				padding: 60px 15px 0;
 			}
@@ -70,7 +79,7 @@
 				Ok, so you've clicked <strong>Minify</strong>, which means we need to have a serious conversation. Minifying Apex isn't a great idea. If you intend to use this in production, it's quite likely that you will end up with a headache when you try to change your code (if you forget there's a <strong>Prettify</strong> button on this site).
 			</p>
 			<p class="text-center disclaimer">
-				There's a better way to approach Apex test coverage. You can <em>write your tests first</em>, which is truly Test Driven Development (TDD, <a href="https://developer.salesforce.com/page/Test_Driven_Development_with_Force.com?elq_mid=6689&amp;elq_cid=3660728" onclick="sendEventToGA('Referral: TDD')">learn more here</a>), or write your tests in a meaningful way. If you've never written tests before, check out <a href="https://trailhead.salesforce.com/en/modules/apex_testing" onclick="sendEventToGA('Referral: Trailhead')">Trailhead</a> to get up to speed.
+				There's a better way to approach Apex test coverage. You can <em>write your tests first</em>, which is truly Test Driven Development (TDD, <a class="link" onclick="openLink('https://developer.salesforce.com/page/Test_Driven_Development_with_Force.com?elq_mid=6689&amp;elq_cid=3660728', 'Referral: TDD')">learn more here</a>), or write your tests in a meaningful way. If you've never written tests before, check out <a class="link" onclick="openLink('https://trailhead.salesforce.com/en/modules/apex_testing', 'Referral: Trailhead')">Trailhead</a> to get up to speed.
 			</p>
 			<div class="action-container">
 				<div class="row">
@@ -91,7 +100,7 @@
 		</main>
 		<footer class="footer">
 			<div class="container">
-				<p class="text-muted text-center">© 2018 Dodge Labs • Check out <a href="https://www.dodgelabs.com" onclick="sendEventToGA('Referral: Dodge Labs')">DodgeLabs.com</a> for developing apps without needing to minify your test coverage.</p>
+				<p class="text-muted text-center">© 2018 Dodge Labs • Check out <a class="link" onclick="openLink('https://www.dodgelabs.com', 'Referral: Dodge Labs')">DodgeLabs.com</a> for developing apps without needing to minify your test coverage.</p>
 			</div>
 		</footer>
 		<!-- JavaScript Functions -->
@@ -114,6 +123,10 @@
 			function showDisclaimer() {
 				let disclaimers = document.querySelectorAll('p.text-center.disclaimer');
 				disclaimers.forEach(element => element.classList.remove('disclaimer'));
+			}
+			function openLink(link, eventLabel) {
+				window.open(link);
+				sendEventToGA(eventLabel);
 			}
 			function sendEventToGA(event) {
 				gtag('event', event);
